@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 31 11:13:58 2021
+
+@author: siddharthgehlot
+"""
+array = [0,1,0,2,1,0,3,1,0,1,2]
+array2 =[1,0,0,1]
+def trappedarea(array):
+    total = 0
+    index=0
+    pointer1 = 0
+    pointer2 = len(array)-1
+    maxleft = array[pointer1]
+    
+    maxright=max(array)
+    
+        
+    
+    while pointer1!=pointer2 and index<len(array):
+        
+     #print(total)   
+     z=min(maxleft,maxright)-array[index]  
+     if z<0:
+         z=0
+         
+     total+=z
+     if array[pointer1]<=array[pointer2] and index<len(array):
+        if array[pointer1]>maxleft: 
+          maxleft = array[pointer1]
+        pointer1+=1
+        
+        
+     else:
+        if array[pointer2]>maxright:
+            maxright = array[pointer2]
+        pointer2-=1
+     index+=1
+    return total  
+
+print(trappedarea(array2))
+        
+        
+        

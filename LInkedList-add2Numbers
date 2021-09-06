@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 17 14:24:27 2021
+
+@author: siddharthgehlot
+"""
+
+#Linked list add 2 numbers 
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+           
+
+class LinkedList:
+        def __init__(self):
+            self.head = None
+        
+        #insert data at start
+        def insertEnd(self,data):
+            insertNode = Node(data)
+            if self.head is None:
+                self.head = insertNode
+            else:
+                value = self.head 
+                while value.next is not None:
+                     value = value.next 
+                value.next = insertNode 
+                
+        def traverse(self):
+            printval = self.head 
+            while printval is not None:
+                print(printval.data)
+                printval = printval.next 
+                
+                
+def reverselist(list1):
+    value = list1.head 
+    node = None
+    while value is not None:
+       nextvalue = value.next
+       value.next = node
+       node = value 
+       value = nextvalue
+      
+    return node   
+        
+       
+def addlists(list1,list2):
+    
+    list3Node = Node(0)
+    list3 = LinkedList()
+    
+    value =list3Node
+    res1 = reverselist(list1)
+    res2 = reverselist(list2)
+    
+    carry=0
+    sum = 0
+    while res1 is not None and res2 is not None:
+         value =list3Node
+         sum = res1.data+res2.data + carry
+         
+         carry = sum//10
+         if res1.next is not None:
+            value.data = (sum)%10
+         else:
+             value.data = sum
+         list3.insertEnd(value.data)
+         #print(value.data)
+         value = value.next 
+         res1 = res1.next
+         res2 = res2.next
+    #list3.traverse()
+         
+    res = reverselist(list3)
+    while res is not None:
+        print(res.data)
+        res = res.next
+          
+          
+        
+if __name__=='__main__':
+     ls = LinkedList()
+     ls.insertEnd(10)
+     ls.insertEnd(2)
+     ls.insertEnd(3)
+     ls.insertEnd(4)
+     ls.insertEnd(5)
+     
+     ls2 = LinkedList()
+     ls2.insertEnd(4)
+     ls2.insertEnd(6)
+     ls2.insertEnd(9)
+     ls2.insertEnd(2)
+     ls2.insertEnd(1)
+    
+     
+
+     addlists(ls,ls2)
+                   

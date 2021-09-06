@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep  4 14:54:55 2021
+
+@author: siddharthgehlot
+"""
+
+#minimum window in str1 which contains all character in str2
+
+str1 ='afdfjgkfbghkjcjkdgtrc'
+str2 ='abc'
+
+
+def window(str1,str2):
+   # str1 = list(str1)
+    # str2 = list(str2)
+    map={}
+    for i in str2:
+        map[i]=float('inf')
+        
+    for j,val in enumerate(str1):
+        if val in map:
+            if j<map[val]:
+               map[val]=j
+         
+    return [map[str2[0]],map[str2[len(str2)-1]]] 
+
+print(window(str1,str2))          
+               
+            
+            

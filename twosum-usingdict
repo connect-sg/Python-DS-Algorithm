@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Aug 28 10:48:39 2021
+
+@author: siddharthgehlot
+"""
+
+list1 = [4,6,3,9,10,12]  
+target = 14
+
+def twosum(ls,target):
+    arr= dict()
+    for i in range(len(list1)):
+        if ls[i] in arr:
+            return [arr[ls[i]],i]
+        
+        else:
+            diff = target-ls[i] 
+            arr[diff]=i
+        
+         
+    return None    
+           
+           
+           
+print(twosum(list1,target))

@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 31 12:04:06 2021
+
+@author: siddharthgehlot
+"""
+string = 'ab#d#efg##'
+
+def typedoutstr(string):
+     array = list(string)
+     st =[]
+     st1=''
+     for n,i in enumerate(array):
+         if i!='#':
+             st.append(i)
+         else:
+             st.pop()
+             
+     for i in st:
+        st1+=i
+     return st1 
+print(typedoutstr(string))         

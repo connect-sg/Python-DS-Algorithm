@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 31 14:04:11 2021
+
+@author: siddharthgehlot
+"""
+#longest string
+
+def substring(string):
+    array=list(string)
+    
+    pointer1 =0
+    maxlen=0
+    a=0
+    while pointer1<len(array)-1:
+     if array[pointer1]==array[pointer1+1]:
+        print(pointer1) 
+        ml = pointer1+1-a
+        
+        
+        a=pointer1+1
+    
+        if ml>maxlen:
+            maxlen=ml
+     pointer1=pointer1+1 
+           
+    return maxlen
+string ='abccabeb'      
+print(substring(string))        
+        

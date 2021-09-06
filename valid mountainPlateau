@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep  4 09:18:24 2021
+
+@author: siddharthgehlot
+"""
+#valid mountain plateau 
+#should have a increasing and decreasing subarray
+array = [0,5,5,1]
+def mount(array):
+    for i in range(len(array)):
+        for j in range(i+2,len(array)):
+         if array[i]<array[i+1] and array[i+1]>array[j]:
+            return True
+    return False
+
+print(mount(array))    
+            

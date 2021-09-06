@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 31 13:54:50 2021
+
+@author: siddharthgehlot
+"""
+
+#LONGEST SUBSTRING WITHOUT CHARACTER REPEATATION
+    
+def substring(string):
+    array = list(string)
+    a =[]
+    maxlen =0
+    for n,i in enumerate(array):
+        if i not in a:
+            a.append(i)
+            print(a)
+        else:
+            
+            if len(a)>maxlen:
+               maxlen = len(a)
+               a=[]
+               a.append(i)
+            
+    return maxlen
+
+string ='abccabdeb'
+print(substring(string))        
+            

@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep  4 11:50:16 2021
+
+@author: siddharthgehlot
+"""
+
+#find missing vlaue
+
+a =[3,0,1]
+def func(a):
+  m = max(a)
+  while m>0:
+   if m-1 not in a:
+      return m-1
+   m-=1
+  return True
+
+
+print(func(a))
+
+
+#solving it using sorting
+
+def func2(a):
+    
+    #can use sorting method 
+    
+    #but for simplicity using sorted function
+    
+    a = sorted(a)
+    
+    startindex = a[0]
+    
+    for i in range(len(a)):
+        if a[i]!=startindex+i:
+            return startindex+i
+    return True 
+
+
+print(func2(a))    
+   
+        
+  
+    

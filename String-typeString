@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Aug 19 16:09:29 2021
+
+@author: siddharthgehlot
+"""
+
+
+
+
+string = 'abc#de#'
+
+#aeb
+def typestr(st):
+    list1 = list(string)
+    list2 =[]
+    i=0
+    str1 =''
+    while i <= len(list1):
+        a = list1.pop(0)
+        if a!='#':
+           list2.append(a)
+        else:
+           list2.pop()
+           i+=1
+    for i in list2:
+        str1 +=i
+    return str1    
+    
+print(typestr('abc##d#ef#b#c'))        
+          
+
+  
+
+       
+            
+
+    

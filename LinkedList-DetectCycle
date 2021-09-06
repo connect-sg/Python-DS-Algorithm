@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Aug 20 08:35:04 2021
+
+@author: siddharthgehlot
+"""
+
+#Linked List cycle detection using hare and tortoise algorithm
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def insertEnd(self,data):
+          insertNode = Node(data)
+          if self.head is None:
+              self.head = insertNode 
+          else:
+              value =self.head
+              while value.next is not None:
+                  value = value.next
+              value.next  = insertNode
+              
+              
+    def traverse(self):
+         printval = self.head
+         while printval is not None:
+             print(printval.data)
+             printval = printval.next
+             
+    def createCycle(self,list1,m):
+        value = list1.head
+        i=0
+        m=2
+        value1 = list1.head
+        while  value is not None:
+            act_val1 = value
+            value = value.next 
+            #print(value.data)
+        while value1 is not None and i<m:
+            act_val = value1
+            value1 = value1.next
+            
+        act_val1.next = act_val
+        
+        
+        
+        
+    def cycledetection(self,node):
+       pointer1 = node
+       pointer2 = node.next
+
+       p2=1
+       while pointer1 is not None and  pointer2 is not None:
+           print('p1 {}'.format(pointer1.data))
+           pointer1 = pointer1.next 
+           while pointer2 is not None and p2<3 :
+               for i in range(1,3):
+                  
+                  if pointer2 is not None:
+                     print('p2 {}'.format(pointer2.data)) 
+                     pointer2 = pointer2.next
+                     p2+=1
+                  
+                  else:
+                      print('cycle doesn\'t exist')
+                      break
+           p2=1        
+           if pointer1==pointer2:
+               print(pointer1.data,pointer2.data)
+               print('cycle exist')
+               break
+               
+       if pointer2 is None:
+         print('not a cycle')
+           
+               
+            
+              
+           
+           
+          
+              
+              
+            
+           
+        
+            
+         
+if __name__=='__main__':
+    ll = LinkedList()
+    ll.insertEnd(1)
+    ll.insertEnd(2)
+    ll.insertEnd(3)
+    ll.insertEnd(4)
+    ll.insertEnd(5)
+    ll.insertEnd(6)
+    ll.insertEnd(9)
+    ll.insertEnd(10)
+    ll.createCycle(ll,3)
+    #ll.cycledetection(ll.head)
+    #ll.traverse() 
+
+    ll1 = LinkedList()
+    ll1.insertEnd(1)
+    ll1.insertEnd(2)
+    ll1.insertEnd(3)
+    ll1.insertEnd(4)
+    ll1.insertEnd(5)  
+    ll1.cycledetection(ll1.head)       

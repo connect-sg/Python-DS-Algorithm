@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep  1 15:17:55 2021
+
+@author: siddharthgehlot
+"""
+
+#right side view of the binary tree
+class Node:
+
+    def __init__(self, data, parent):
+        self.data = data
+        self.parent = parent
+        self.right_node = None
+        self.left_node = None
+
+
+class BinarySearchTree:
+
+    def __init__(self):
+        self.root = None
+
+    def remove(self, data):
+        if self.root:
+            self.remove_node(data, self.root)
+
+    def insert(self, data):
+        if self.root is None:
+            self.root = Node(data, None)
+        else:
+            self.insert_node(data, self.root)
+
+    def insert_node(self, data, node):
+        # we have to go to the left subtree
+        if data < node.data:
+            if node.left_node:
+                self.insert_node(data, node.left_node)
+            else:
+                node.left_node = Node(data, node)
+        # we have to visit the right subtree
+        else:
+            if node.right_node:
+                self.insert_node(data, node.right_node)
+            else:
+                node.right_node = Node(data, node)
+
+    
+
+    def get_predecessor(self, node):
+        if node.right_node:
+            return self.get_predecessor(node.right_node)
+
+        return node
+
+    def traverse(self):
+        if self.root is not None:
+            self.traverse_in_order(self.root)
+
+    def traverse_in_order(self, node):
+        
+        if node.left_node:
+            self.traverse_in_order(node.left_node)
+
+        print(node.data)
+
+        if node.right_node:
+            self.traverse_in_order(node.right_node)
+
+    def rightSideView(self,node,n,result):
+        
+        
+        if node:
+         if n>=len(result):
+            result.append(node.data)
+            
+            print('right_node {}'.format(n))
+            
+            self.rightSideView(node.right_node,n+1,result)
+         if node.left_node:
+                #result.append(node.left_node.data)
+                print('left_node {}'.format(n))
+                self.rightSideView(node.left_node,n+1,result)
+                
+        return result    
+            
+        
+            
+      
+        
+        
+if __name__ == '__main__':
+
+    bst = BinarySearchTree()
+    
+    bst.insert(1)
+    bst.insert(3)
+    bst.insert(6)
+    bst.insert(2)
+    bst.insert(4)
+    bst.insert(5)
+    bst.insert(7)
+    bst.insert(8)
+    """
+    bst.insert(4)
+    bst.insert(5)
+    bst.insert(8)
+    bst.insert(3)
+    bst.insert(2)
+    bst.insert(1)
+   """
+    
+    print(bst.rightSideView(bst.root,0,[]) )       

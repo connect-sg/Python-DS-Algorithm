@@ -1,0 +1,46 @@
+string = '{{}}['
+
+def validate(s):
+    stack = []
+    
+    
+    j=0
+    k=[]
+    s= list(s)
+    l = len(s)
+    par = {'{':'}','[':']','(':')'}
+    while j<l:
+      a= s.pop(0)
+      print('a {}'.format(a))
+      for key,value in par.items():
+          k.append(key)
+      print(k)    
+      if a in k : 
+          
+       
+          stack.append(a)
+          print('c {}'.format(stack))
+      elif a not in k:
+             i=0
+             while i<len(stack):
+                 print('first while')
+                 cnt=0
+                 while cnt < 1:  
+                   if par[stack[i]]==a:
+                      b= stack.pop(i)
+                      print('b {}'.format(b))
+                      cnt+=1
+                 i+=1  
+                 
+      j+=1
+      print('j {}'.format(j))          
+                
+      
+    if len(stack)==0:
+         print('valid')
+    else:
+         print('invalid')
+         print(stack)
+validate(string)      
+    
+    

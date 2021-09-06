@@ -1,0 +1,155 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 18 11:44:46 2021
+
+@author: siddharthgehlot
+"""
+
+#Binary search tree
+
+class Node:
+    def __init__(self,data,parent):
+        self.data = data
+        self.rightChild = None
+        self.leftChild = None
+        self.parent = parent
+
+class BinarySearchTree:
+     def __init__(self):
+         self.root =None
+     #insert data 
+     def insert(self,data):
+        if self.root is None:
+            self.root = Node(data,None)
+        else:
+            self.insertNode(self.root,data)
+    
+     def insertNode(self,node, data):
+         
+         if data>node.data:
+             if node.rightChild:
+                 self.insertNode(node.rightChild,data)
+             else:
+                 node.rightChild = Node(data,node)
+         else:
+             if node.leftChild:
+                 self.insertNode(node.leftChild,data)
+             else:
+                 node.leftChild = Node(data,node)
+                 
+               
+        
+        
+    
+
+
+
+    #search data    
+     def search(self,data):
+            value = self.root   
+            if value.data == data:
+                print('value found')
+            else:
+                self.searchBST(value,data)
+                
+     def searchBST(self,node,data):
+            if data>node.data:
+                if node.data==data:
+                    print('vlaue found in  BST')
+                   
+                if node.rightChild and node.data!=data:
+                    print('right child')
+                    self.searchBST(node.rightChild,data)
+                
+            else:
+                if node.data == data:
+                    print("value found in BST")
+                   
+                if node.leftChild and node.data!=data:
+                    print('left child')
+                    self.searchBST(node.leftChild,data)
+                    
+                
+                 
+                    
+    
+    
+    #remove data
+    
+     def  remove(self,data):
+         if self.root is not None:
+             self.removedata(data, self.root)
+     def removedata(self,data,node):
+         if data>node.data: 
+                                                
+                if node.rightChild and node.data!=data:
+                    print('right child')
+                    print(data,node.data)  
+                    self.removedata(data,node.rightChild)
+                
+         elif data <node.data:
+                
+                print(data,node.data)     
+                if node.leftChild and node.data!=data:
+                    print('left child')
+                    self.removedata(data,node.leftChild)
+        
+         elif node.data ==data:
+                  print('in if loop')
+                  print(data,node.data)  
+                  parent = node.parent 
+                  
+                  print("parent {}".format(parent.data))
+                  left = node.leftChild 
+                  print("left {}".format(left.data))
+                  right = node.rightChild
+                  print("right {}".format(right.data))
+                  #parent.rightChild = None
+                  parent.righChild = left
+                  
+                  left.rightChild = right
+                  left.parent = parent
+                  #left.leftChild = parent
+                  right.parent = left
+                  #right.leftChild = left
+                  node.parent = None
+                 
+                  
+                  
+                  
+    
+    
+    #traverse data
+    
+     def  traverse(self):
+         value = self.root
+         
+         if value is None:
+             return None
+         else:
+             self.traversebst(value)
+             
+     def traversebst(self,node):
+         if node.leftChild:
+             self.traversebst(node.leftChild)
+         
+         print(node.data)    
+         
+         if node.rightChild:
+             self.traversebst(node.rightChild)
+    
+    
+    
+    
+if __name__=='__main__':
+     bst = BinarySearchTree()
+     bst.insert(3)
+     bst.insert(7)
+     bst.insert(10)
+     bst.insert(14)
+     bst.insert(6)
+     #bst.search(10)
+     bst.remove(7)
+     
+     bst.traverse()

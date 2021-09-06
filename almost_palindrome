@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 31 15:37:54 2021
+
+@author: siddharthgehlot
+"""
+
+#almost palindrome
+string ='abcddba'
+
+def validpalindrome(string,pt1,pt2):
+    
+    array=list(string)
+    
+    
+    while pt1<=pt2:
+        if array[pt1]!=array[pt2]:
+            return False
+        
+        pt1+=1
+        pt2-=1
+    return True
+ 
+def almostpalindrome(array):
+    pt1=0
+    pt2=len(array)-1
+    
+    while pt1<=pt2:
+        if array[pt1]!=array[pt2]:
+           #print(validpalindrome(array,pt1+1,pt2),validpalindrome(array,pt1,pt2-1)) 
+           return validpalindrome(array,pt1+1,pt2) or validpalindrome(array,pt1,pt2-1)
+        pt1+=1
+        pt2-=1
+    print('result') 
+    return True
+     
+         
+
+             
+print(almostpalindrome(string)) 
+print()  

@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 17 18:30:02 2021
+
+@author: siddharthgehlot
+"""
+
+#remove the nth node
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+           
+
+class LinkedList:
+        def __init__(self):
+            self.head = None
+        
+        #insert data at start
+        def insertEnd(self,data):
+            insertNode = Node(data)
+            if self.head is None:
+                self.head = insertNode
+            else:
+                value = self.head 
+                while value.next is not None:
+                     value = value.next 
+                value.next = insertNode 
+                
+        def traverse(self):
+            printval = self.head 
+            while printval is not None:
+                print(printval.data)
+                printval = printval.next  
+                
+        def removenth(self,n):
+              value = self.head
+              while n>1 and value is not None:
+                  act_val = value
+                  value = value.next 
+                  n-=1
+                 
+              act_val.next  = value.next
+              value = None
+                  
+if __name__=='__main__':
+     ls = LinkedList()
+     ls.insertEnd(10)
+     ls.insertEnd(2)
+     ls.insertEnd(3)
+     ls.insertEnd(4)
+     ls.insertEnd(5)
+     ls.traverse()
+
+     ls.removenth(2)
+     ls.traverse()         

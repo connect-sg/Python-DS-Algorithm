@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep  3 13:22:48 2021
+
+@author: siddharthgehlot
+"""
+
+def cost(c):
+    n = len(c)
+    return min(optimalcost(c,n-1),optimalcost(c,n-2))
+
+
+def optimalcost(cost,n):
+    if n==0:
+        return  cost[n]
+    if n==1:
+        return cost[n]
+     
+    return cost[n]+min(optimalcost(cost,n-1),optimalcost(cost,n-2))
+
+
+
+c=[20,15,30,5]
+c1=[10,15,30] 
+c2 =[1,1,1]       
+#print(cost(c))   
+
+
+def costdp(cost):
+    n = len(cost)
+    dp =[None for _ in range(n)]
+    return min(optimalcostdp(cost,n-1,dp),optimalcostdp(cost,n-2,dp))
+
+def optimalcostdp(cost,n,dp):
+    if n==0 or n==1:
+        dp[n]=cost[n]
+    if dp[n]!=None:
+        return dp[n]
+    dp[n]  = cost[n]+min(optimalcostdp(cost,n-1,dp),optimalcostdp(cost,n-2,dp))
+    print(dp)
+    return dp[n]
+
+#print(costdp(c2))   
+
+
+   

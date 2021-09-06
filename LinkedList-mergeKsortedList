@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 17 19:53:14 2021
+
+@author: siddharthgehlot
+"""
+
+#merge k sorted lists
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+           
+
+class LinkedList:
+        def __init__(self):
+            self.head = None
+        
+        #insert data at start
+        def insertEnd(self,data):
+            insertNode = Node(data)
+            if self.head is None:
+                self.head = insertNode
+            else:
+                value = self.head 
+                while value.next is not None:
+                     value = value.next 
+                value.next = insertNode 
+                
+        def traverse(self):
+            printval = self.head 
+            while printval is not None:
+                print(printval.data)
+                printval = printval.next 
+def merge2list(list1,list2):
+    val1 = list1.head
+    val2 = list2.head
+    list3 = LinkedList()
+    while val1 and val2:
+     if val1.data>=val2.data:
+       
+       list3.insertEnd(val2.data)
+       val2 = val2.next
+       while val1 is not None and val2 is None: 
+         list3.insertEnd(val1.data)
+         val1 = val1.next
+           
+     else:
+         
+       list3.insertEnd(val1.data) 
+       val1 = val1.next
+       while val2 is not None and val1 is None:
+         list3.insertEnd(val2.data)
+         val2 = val2.next 
+     
+       
+           
+     
+     #list3.traverse()
+    return list3           
+              
+def mergeKsortlist(llists):
+    list4 = LinkedList()
+    list4.insertEnd(0)
+    
+    if len(llists)==0:
+        return None
+    else:
+        for i in llists:
+           list4 = merge2list(list4, i)
+           #print('list after each merge')
+           #list4.traverse()       
+    return list4       
+           
+        
+        
+        
+if __name__=='__main__':
+     ls = LinkedList()
+     ls.insertEnd(3)
+     ls.insertEnd(7)
+     ls.insertEnd(8)
+     ls.insertEnd(10)
+     ls.insertEnd(16) 
+     
+     ls1 = LinkedList()
+     ls1.insertEnd(2)
+     ls1.insertEnd(4)
+     ls1.insertEnd(5)
+     ls1.insertEnd(9)
+     ls1.insertEnd(11)
+     
+     ls2 = LinkedList()
+     ls2.insertEnd(12)
+     ls2.insertEnd(14)
+     ls2.insertEnd(15)
+     ls2.insertEnd(19)
+     ls2.insertEnd(19) 
+     #merge2list(ls,ls1).traverse()
+     
+     mergeKsortlist([ls,ls1,ls2]).traverse()
+        
+                 

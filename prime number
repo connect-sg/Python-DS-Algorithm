@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep  4 12:04:13 2021
+
+@author: siddharthgehlot
+"""
+
+#prime number less than non negative number N
+
+def prime(N):
+    arr =[]
+    count=0
+    for i in range(1,N):
+     if i%2!=0:
+        count+=1 
+        arr.append(i)
+    return arr,count
+
+print(prime(10))

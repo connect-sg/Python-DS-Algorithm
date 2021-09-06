@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 18 13:32:33 2021
+
+@author: siddharthgehlot
+"""
+
+#heap
+
+        
+class Heap:
+    def __init__(self):
+        self.capacity = 10
+        self.heap = [0]*self.capacity   
+        self.heap_size = 0
+
+    def insert(self,item):
+        
+        if self.heap_size<self.capacity:
+            self.heap[self.heap_size] = item
+            self.heap_size+=1
+            
+        #self.fix_down_up(self.heap_size-1)
+        self.fix_up_down(0)
+        
+    def fix_down_up(self,index):
+        parent_index = (index-1)//2
+        if index>0 and self.heap[parent_index]<self.heap[index]:
+            self.heap[parent_index],self.heap[index]=self.heap[index],self.heap[parent_index]
+            self.fix_down_up(parent_index)
+            
+    def fix_up_down(self,index):
+         leftChild =   2*index+1
+         rightChild = 2*index+2
+         
+         largest_index = index 
+         if self.heap[leftChild]>self.heap[index] and leftChild<self.heap_size:
+             largest_index = leftChild 
+             
+         if self.heap[rightChild]>self.heap[largest_index] and rightChild<self.heap_size:
+             largest_index = rightChild  
+             
+             
+         if index!=largest_index :
+             self.heap[index],self.heap[largest_index] = self.heap[largest_index],self.heap[index]
+             self.fix_up_down(largest_index)
+            
+     
+   
+
+             
+       
+            
+            
+        
+            
+if __name__=='__main__':
+    h = Heap()
+    h.insert(4)
+    h.insert(7)
+    h.insert(12)
+    h.insert(1)
+    h.insert(3)
+    h.insert(8)
+    h.insert(9)
+    h.insert(10)
+    h.insert(18) 
+    h.insert(20)
+    
+    print(h.heap)
+
+        

@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Aug 29 21:03:20 2021
+
+@author: siddharthgehlot
+"""
+
+#doubly linked list
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        self.prev = None
+        
+class DoublyLinkedList:
+     def __init__(self):
+         self.head  = None
+         self.tail = None 
+         
+     def insertstart(self,data):
+         insertNode = Node(data)
+         if self.head is None:
+             self.head = insertNode 
+             self.tail = insertNode 
+             
+         else:
+             value = self.head 
+             insertNode.next = value
+             value.prev = insertNode
+             self.head = insertNode 
+             
+     def insertlast(self,data):
+         insertNode = Node(data)
+         if self.head is None:
+             self.head = insertNode 
+             self.tail = insertNode 
+         else:
+              
+             self.tail.next = insertNode
+             insertNode.prev = self.tail 
+             self.tail = insertNode
+             
+     def traverseforward(self):
+          printval = self.head 
+          while printval is not None:
+              print(printval.data)
+              printval = printval.next
+          
+            
+     def  traverseback(self):
+         printval = self.tail
+         while printval is not None:
+             print(printval.data)
+             printval = printval.prev
+             
+if __name__=='__main__':
+    dll = DoublyLinkedList()
+    dll.insertstart(1)
+    dll.insertlast(4)
+    dll.insertstart(2)
+    dll.traverseforward()
+    dll.traverseback()             

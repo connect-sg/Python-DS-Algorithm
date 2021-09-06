@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Aug 19 08:37:25 2021
+
+@author: siddharthgehlot
+"""
+
+#given an array find the area of container that can hold maximum water 
+
+array =[1,8,6,2,9,4]
+
+
+
+def area(array):
+    dict1 = {}
+    area = 0
+    
+    #avoid creating dictionary by enumerating on array
+    for key,num in enumerate(array):
+        dict1[key] = num
+        
+    print(dict1)    
+    for i in range(len(dict1)):
+        for j in range(len(dict1)):
+            
+            areabox = min(dict1[i],dict1[j])*abs(i-j)
+            print(areabox,dict1[i],dict1[j])
+            if area<areabox:
+                area = areabox
+    return area            
+            
+            
+print(area(array))        

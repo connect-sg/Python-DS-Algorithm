@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Aug 26 19:00:58 2021
+
+@author: siddharthgehlot
+"""
+
+# n queens problem using back tracking 
+
+class nqueen:
+    def __init__(self, n):
+        self.n = n 
+        self.chess_table = [[0 for i in range(self.n)] for j in range(self.n)]
+        
+        
+    def solve_n_queen(self):
+        if self.solve(0):
+            self.print_board()
+            return True
+        else:
+            print('unable to find solution')
+        
+        
+            
+    def solve(self,col_index):
+        if col_index ==self.n:
+            return True
+        for row_index in range(self.n):
+            
+            if self.is_safe(row_index,col_index):
+                
+                self.chess_table[row_index][col_index]=1
+                 
+                if self.solve(col_index+1):
+                    
+                    return True
+               
+                #backtrack 
+                
+                self.chess_table[row_index][col_index]=0
+
+        return False
+        
+    def   is_safe(self,row_index,col_index):
+          # check if queens are not in same row
+          for i in range(self.n):
+                  
+                  if self.chess_table[row_index][i]==1:
+                      
+                      return False
+          #check for diagonal cells
+          #top left to bottom right 
+          j = col_index
+          for i in range(row_index,-1,-1):
+              
+              if i<0:
+                  break
+              if self.chess_table[i][j]==1:
+                  
+                  return False
+              j=j-1
+              
+         #bottom left to top right
+         
+          j = col_index
+          for i in range(row_index,self.n):
+             
+             if i<0:
+                 break
+             if self.chess_table[i][j]==1:
+                 
+                 return False
+             j = j-1
+          return True   
+                
+             
+        
+    def print_board(self): 
+        
+        for i in range(self.n):
+            for j in range(self.n):
+                if self.chess_table[i][j]==1:
+                    print(' Q ',end ='')
+                else:
+                    print(' - ',end ='')
+                    
+            print('\n')    
+                    
+if __name__=='__main__':
+    nq = nqueen(4)
+    nq.solve_n_queen()                    
+                    
+                    

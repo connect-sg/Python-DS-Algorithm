@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Aug 19 12:49:28 2021
+
+@author: siddharthgehlot
+"""
+
+#find the area of maximum water when width of bar is one
+
+array = [0,1,0,2,1,0,3,1,0,1,2]
+
+
+
+  
+
+
+
+def areawater(array):
+    
+    area = 0
+    a= 0
+    b=0
+   
+    for i in range(len(array)):
+        for j in range(i+1,len(array)):
+          
+                areamin = min(array[i],array[j])
+                if abs(i-j)>1:
+                   
+                  for k in range(i,j,1):
+                      
+                     if array[k]>array[i] and array[k]>array[j]:
+                         #print(i,k,j)
+                         a= i
+                         b = j
+                  if  (i==a and j!=b) or (i!=a and j==b) or (i!=a and j!=b):
+
+                     areamin = areamin + sum([array[i]for i in range(i+1,j)])      
+                     #print([array[k],array[i],array[j]])
+                     
+                     #print("areamin {}".format(areamin))
+                      
+                          
+                    
+            
+                     areabox = min(array[i],array[j])*abs(i-j) - areamin
+                     if areabox>1:
+                      print(areabox,areamin,[i,j],[array[i],array[j]])
+         
+                     if area<areabox:
+                       area = areabox
+        print('_________________________')    
+                
+    return area  
+
+
+
+print(areawater(array))               
+                 

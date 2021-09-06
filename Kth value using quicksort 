@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep  1 07:25:36 2021
+
+@author: siddharthgehlot
+"""
+
+#kth largest element
+
+l =[3,1,5,7,2,4]
+k=2
+def quicksort(l,low,high):
+    pivot = (low+high)//2
+    
+    l[pivot],l[high]=l[high],l[pivot]
+    index =low
+    
+    for i in range(len(l)):
+        if l[i]<l[high] and index<len(l)-1:
+            
+            l[i],l[index]=l[index],l[i]
+            index+=1
+           
+    l[index],l[high]=l[high],l[index] 
+    #print(l)
+    pivot =index
+    return pivot    
+
+def sort(l,k):
+    
+    pivot = quicksort(l,0,len(l)-1)
+    #print(pivot)
+    if k>pivot:
+     while pivot!=k:   
+      pivot= quicksort(l,pivot+1,len(l)-1)
+      
+     return l[pivot]
+    else: 
+       while pivot!=k:  
+          pivot = quicksort(l,0,pivot-1)
+          #print(pivot)
+       return l[pivot] 
+   
+print(sort(l,k))    

@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 17 10:31:19 2021
+
+@author: siddharthgehlot
+"""
+
+# Linked List
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+        def __init__(self):
+            self.head = None
+        
+        #insert data at start
+        def insertStart(self,data):
+            insertNode = Node(data)
+            if self.head is None:
+                self.head = insertNode
+            else:
+                insertNode.next = self.head 
+                self.head = insertNode
+                
+        
+        
+        #isnert data at end
+        def insertEnd(self,data):
+            insertNode = Node(data)
+            if self.head is None:
+                self.head = insertNode
+            else:
+                value = self.head 
+                while value.next is not None:
+                     value = value.next 
+                value.next = insertNode    
+        
+        #remove data from start
+        
+        def removeStart(self):
+            if self.head is None:
+                return None
+            else:
+                value = self.head
+                self.head = value.next  
+        
+        
+        
+        #remove data form end 
+        def removeEnd(self):
+            if self.head is None:
+                return None
+            else:
+                value = self.head 
+                act_val = None
+                while value.next is not None:
+                    act_val = value
+                    value = value.next 
+                
+                value = None    
+                act_val.next = value
+        
+        
+        #remove data in betweeen
+        def removeBtw(self, data):
+            if self.head is None:
+                return None
+            else:
+                value = self.head
+                act_val = None
+                while value.data!=data and value.next is not None:
+                    act_val = value
+                    value=value.next 
+                if value.data==data:
+                    
+                    act_val.next = value.next 
+                    value = None
+        
+        
+        
+        #traverse through the list
+        def traverse(self):
+            printval = self.head 
+            while printval is not None:
+                print(printval.data)
+                printval = printval.next 
+                
+if __name__=="__main__":
+    ls = LinkedList()
+    ls.insertStart(4)
+    ls.insertStart(9)
+    ls.insertStart(10)
+    ls.insertEnd(0)
+    ls.insertEnd(23)
+    ls.insertStart(5)
+    ls.removeStart()
+    ls.removeEnd()
+    ls.removeBtw(9)
+    ls.removeBtw(0)
+    ls.traverse() 
+    print(ls.head.data)          

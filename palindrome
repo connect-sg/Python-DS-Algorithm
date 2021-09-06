@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 31 15:22:05 2021
+
+@author: siddharthgehlot
+"""
+
+#palindrome using pointers
+
+#starting with pointer at both the ends of the array
+string ='abccba'
+def palindrome1(string):
+    
+    array=list(string)
+    
+    pt1 = 0
+    pt2 = len(array)-1
+    while pt1<=pt2:
+        if array[pt1]!=array[pt2]:
+            return False
+        
+        pt1+=1
+        pt2-=1
+        return True
+print(palindrome1(string))  
+
+
+#aplindrome using 2 middle pointers
+def palindrome2(string):
+     array=list(string)
+     if len(array)%2==0:
+         
+         pt1=len(array)//2-1
+         pt2=len(array)//2
+     else:
+         pt1,pt2 =len(array)//2,len(array)//2
+         
+     while pt1>=0 and pt2<len(array):
+         if array[pt1]!=array[pt2]:
+             return False
+         pt1-=1
+         pt2+=1
+         
+         return True
+
+print(palindrome2(string)) 
+
+
+       
+            
+            

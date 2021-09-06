@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Sep  2 19:14:54 2021
+
+@author: siddharthgehlot
+"""
+#eg - [1,0] 0 course  is prereq for 1 course
+prereq = [[1,0],[2,1],[2,5],[0,3],[4,3],[3,5],[4,5]]
+prereq2 = [[1,0],[0,2],[2,1]]
+empid2=[0,1,2]
+n2 = 3
+empid =[0,1,2,3,4,5]
+n=6
+stack = []
+#5 courses
+def check(n,prereq,empid):
+    length =len(empid)
+    indegree ={}
+    adj_list ={}
+    for i in range(n):
+        indegree[i]=0
+       
+        adj_list[i]=[]
+    for i in prereq:
+        indegree[i[0]]+=1
+        
+        adj_list[i[1]].append(i[0])
+ 
+  
+        
+    while empid!=[]:
+     for n,i in enumerate(empid):    
+       if indegree[n]==0:
+         
+          actval= empid.pop(n) 
+          #print(empid)
+          for a in adj_list[actval]:
+              
+              indegree[a]-=1
+              stack.append(a)
+              
+     if len(empid)==length:
+         return False
+           
+              
+       
+  
+    if empid==[]:
+         return True
+    else:
+         return False          
+             
+    return False     
+         
+          
+           
+
+
+print(check(n,prereq,empid)) 
+print(check(n2,prereq2,empid2))   
