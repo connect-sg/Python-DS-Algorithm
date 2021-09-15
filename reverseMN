@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep  6 18:57:37 2021
+
+@author: siddharthgehlot
+"""
+
+#linked list reverse M to N
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+           
+
+class LinkedList:
+        def __init__(self):
+            self.head = None
+        
+        #insert data at start
+        def insertEnd(self,data):
+            insertNode = Node(data)
+            if self.head is None:
+                self.head = insertNode
+            else:
+                value = self.head 
+                while value.next is not None:
+                     value = value.next 
+                value.next = insertNode 
+                
+        def traverse(self):
+            printval = self.head 
+            while printval is not None:
+                print(printval.data)
+                printval = printval.next  
+                
+        def reverse(self,):
+          value = self.head
+          node=None
+          while value is not None:
+            nextnode = value.next
+            value.next = node 
+            node = value
+            value = nextnode
+          self.head = node  
+          
+          
+            
+        def reverseMN(self,M,N):
+          value1 = self.head
+          value2 = self.head
+          i=1
+          j=1
+          #nextnode = None
+          while value1 is not None and i<M:
+            prev1 = value1
+            value1 = value1.next
+            
+            i+=1 
+          #print(value1.data)  
+          while value2 is not None and j<N:
+            prev2 =value2
+            value2= value2.next
+            nextnode = value2.next
+            j+=1
+          #print(prev1.data)  
+          value = value1
+          node=nextnode
+          while value is not None and value!=nextnode:  
+            nextn = value.next
+            value.next = node 
+            node = value
+            value = nextn
+          #self.head = node  
+          
+          
+          prev1.next = value2
+          
+          
+          
+          
+            
+if __name__=='__main__':
+      ll =LinkedList()
+      ll.insertEnd(1)
+      ll.insertEnd(2)
+      ll.insertEnd(3)
+      ll.insertEnd(4)
+      ll.insertEnd(5)
+      #ll.traverse()
+      #ll.reverse()
+
+      #ll.traverse()  
+
+      ll.reverseMN(2,4)
+      ll.traverse()          

@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep  6 11:58:15 2021
+
+@author: siddharthgehlot
+"""
+
+array = [1,8,6,2,9,4]   
+output = 24
+
+#brute force
+
+def container(array):
+       maxarea =0
+      
+       i=0
+       j=i+1
+       for i  in range(len(array)):
+           for j in range(i,len(array)):
+                if array[j]>array[i]:
+                      area = min(array[i],array[j])*(j-i)
+                      print(array[i],array[j],area)
+                      if area>maxarea:
+                             maxarea= area
+                      
+                      
+                
+               
+          
+             
+       return maxarea
+
+
+print(container(array))

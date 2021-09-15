@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Sep 12 10:19:20 2021
+
+@author: siddharthgehlot
+"""
+
+#remove nth node from the end of list
+#n = 2
+#input 1>2>3>4>5
+#output 1>2>3>5
+
+
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+class LinkedList:
+    def __init__(self):
+        self.head = None
+            
+    def insertEnd(self,data):
+         if self.head is None:
+             self.head = Node(data)
+         else:
+             val = self.head 
+             while val.next is not None:
+                 val = val.next 
+                 
+             val.next = Node(data)    
+          
+    def traverse(self):
+         printval = self.head 
+         while printval is not None:
+             print(printval.data)
+             printval = printval.next 
+             
+             
+    def removeNLastNode(self,n):
+          count=0
+          N=0
+          val = self.head 
+          val1 = self.head
+          while  val is not None:
+              count+=1
+              val = val.next 
+          while val1.next is not None and N<count-n:
+              N+=1
+              prev = val1
+              val1 = val1.next 
+          prev.next = val1.next 
+          
+              
+              
+             
+if __name__=='__main__':    
+    ll1 = LinkedList()
+    ll1.insertEnd(1)
+    ll1.insertEnd(2)
+    ll1.insertEnd(3)
+    ll1.insertEnd(4)
+    ll1.insertEnd(5)
+    ll1.removeNLastNode(2)
+    ll1.traverse()
+    
+    
+    
+
+                 

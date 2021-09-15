@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 10 15:28:20 2021
+
+@author: siddharthgehlot
+"""
+
+#move zeros to the end
+
+
+array = [0,1,2,0,3]
+#expected output = [1,2,3,0,0]
+
+
+def moveZero(array):
+    for i in range(len(array)):
+        if array[i]==0:
+            a = array.pop(i)
+            array.append(a)
+            
+    return array 
+print(moveZero(array))        
+
+
+
+#using pointer
+
+def moveZeroPointer(array):
+    pt1 = 0
+    while pt1<len(array)-1:
+      if array[pt1]==0:
+          array[pt1],array[pt1+1]=array[pt1+1],array[pt1]
+      pt1+=1
+    return array
+    
+print(moveZeroPointer(array))  
+          
+        

@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep  8 17:57:24 2021
+
+@author: siddharthgehlot
+"""
+
+#LEVEL ORDER OF BINARY TREE
+
+class Node:
+    def __init__(self,data,parent):
+        self.data = data
+        self.leftChild = None
+        self.rightChild = None
+        self.parent = parent
+        self.visited = False
+class BinarySearchTree:
+    def __init__(self):
+         self.root = None
+         
+    def insert(self,data):
+        insertNode = Node(data,None)
+        if self.root is None:
+            self.root = insertNode 
+        else:
+            self.insertData(self.root,data)
+            
+    def insertData(self,node,data):
+         if data>node.data:
+             if node.rightChild:
+                 self.insertData(node.rightChild,data)
+             else:
+                 node.rightChild = Node(data,node)
+         else:
+             if node.leftChild:
+                 self.insertData(node.leftChild,data)
+             else:
+                 node.leftChild = Node(data,node)
+                 
+
+    def returnLevel(self,level):
+        if self.root is None:
+            return 0
+        else:
+            queue =[self.root]
+            return self.levelOrder(queue,level,1)
+
+    def levelOrder(self,queue,level,currlevel):
+        
+       
+        l= len(queue)
+        print('l {}'.format(l))
+        if currlevel==level:
+                a=[]
+                for i in queue:
+                   a.append(i.data) 
+                return a   
+        while queue:
+         while l>0:
+            print(l) 
+            actval = queue.pop(0)
+            print('actval {}'.format(actval.data))
+            
+           
+            actval.visited = True
+            
+            if actval.leftChild:
+                queue.append(actval.leftChild)
+                
+            if actval.rightChild:
+                queue.append(actval.rightChild)
+            l-=1    
+         currlevel+=1
+            
+         return self.levelOrder(queue,level,currlevel)
+         
+        
+        
+    
+    def traversenodes(self):
+           if self.root is None:
+               return 
+           else:
+               self.traverse(self.root)
+    def traverse(self,value):
+        
+        
+        if value.leftChild:
+              self.traverse(value.leftChild)
+        print(value.data)
+        if value.rightChild:
+              self.traverse(value.rightChild)  
+              
+              
+              
+if __name__=='__main__':
+       bst = BinarySearchTree()
+       bst.insert(5)
+       bst.insert(3)
+       bst.insert(2)
+       bst.insert(8)
+       bst.insert(10)
+       bst.insert(13)
+       #bst.traversenodes()   
+       #print(bst.maxdepth()) 
+       print(bst.returnLevel(4))          
+              
+    

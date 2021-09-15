@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep 11 10:42:12 2021
+
+@author: siddharthgehlot
+"""
+
+#mimmum window substring
+
+
+s = 'ADOBECODEBAVCD'
+t = 'ABC'
+def minWindow(s,t):
+    pt1 = 0
+    pt2 = 0
+ 
+   
+    j=0
+    arr = list(t)
+    window = float('inf')
+    
+    while j<len(s):
+        print(arr,pt1,pt2,j)
+        
+            
+            
+        if len(arr)>0 and s[j]in arr:
+            pt2+=1
+            arr.remove(s[j])
+        elif len(arr)>0 and len(arr)==len(t):
+            pt1 = j
+            pt2 = j     
+        elif len(arr) >0 and len(arr)<len(t) and s[j] not in arr:
+            pt2+=1
+        elif len(arr)==0:
+             print(pt2,pt1)
+             w = pt2-pt1
+             print(w)
+             if w < window:
+                 window = w
+             pt1=j
+             arr =list(t)
+           
+        j+=1    
+    return window   
+
+
+print(minWindow(s,t))     
+             
+             
+            
+             
+            
+                
+            
+            
+            
+    

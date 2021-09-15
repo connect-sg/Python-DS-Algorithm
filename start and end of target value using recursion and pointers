@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep  8 15:47:16 2021
+
+@author: siddharthgehlot
+"""
+
+#   start and end of the target
+array= [1,2,2,3,3,3,5,5]
+target = 5
+def getRange(array,target,l,r):
+    
+    #can be done using binary search
+    
+    mid = (l+r)//2
+    print(mid)
+    pt1 =mid 
+    pt2 = mid
+    print(array[pt1],target)
+    if array[pt1]==target:
+        while array[pt1-1]>=target and pt1>=0:
+            if array[pt1]==target:
+                  pt1-=1
+           
+        while array[pt2]<=target and pt2<len(array)-1:
+            if array[pt2]==target:
+                 pt2+=1
+           
+        return [pt1,pt2]    
+            
+ 
+    
+    if array[pt1]<target:
+      
+      return getRange(array,target,pt1+1,r)
+    else:
+        return getRange(array,target,l,pt1-1)
+        
+        
+    return [pt1,pt2]        
+
+print(getRange(array,target,0,len(array)))

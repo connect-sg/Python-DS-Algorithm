@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep 11 08:18:12 2021
+
+@author: siddharthgehlot
+"""
+
+#two sums
+
+array = [3,16,12,1]
+target = 17
+
+def twoSum(array,target):
+    t= []
+    for i in range(len(array)):
+        t.append(target-array[i])
+        
+        if array[i] in t:
+            return i,t.index(array[i])
+        
+        
+        
+print(twoSum(array,target))        

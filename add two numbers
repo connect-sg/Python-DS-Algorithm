@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Sep 12 10:01:57 2021
+
+@author: siddharthgehlot
+"""
+
+# add two numbers of linked list 
+
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+class LinkedList:
+    def __init__(self):
+        self.head = None
+            
+    def insertEnd(self,data):
+         if self.head is None:
+             self.head = Node(data)
+         else:
+             val = self.head 
+             while val.next is not None:
+                 val = val.next 
+                 
+             val.next = Node(data)    
+          
+    def traverse(self):
+         printval = self.head 
+         while printval is not None:
+             print(printval.data)
+             printval = printval.next 
+             
+    def addTwoNumbers(self,head1,head2,ll3,carry):
+          if head1 is None and head2 is None:
+              return ll3
+          if head1.next or head2.next:
+              
+              s = head1.data+head2.data 
+              carry = s//10
+              val = s%10
+              ll3.insertEnd(val)
+          else:
+              s=head1.data+head2.data+carry
+              ll3.insertEnd(s)
+          
+          return self.addTwoNumbers(head1.next,head2.next,ll3,carry) 
+      
+    
+if __name__=='__main__':    
+    ll1 = LinkedList()
+    ll1.insertEnd(2)
+    ll1.insertEnd(4)
+    ll1.insertEnd(3)
+    
+    ll2 = LinkedList()
+    ll2.insertEnd(5)
+    ll2.insertEnd(6)
+    ll2.insertEnd(4) 
+
+
+    ll3 = LinkedList() 
+    ll3.addTwoNumbers(ll1.head,ll2.head,ll3,0)
+    ll3.traverse()
+          
+          

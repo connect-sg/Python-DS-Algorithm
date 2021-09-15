@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Sep 11 16:27:15 2021
+
+@author: siddharthgehlot
+"""
+
+array=[
+         {'shop':False,'gym': True ,'garden':False},
+         {'shop':True,'gym': False ,'garden':False},
+         {'shop':True,'gym': True ,'garden':False},
+         {'shop':False,'gym': True ,'garden':False},
+         {'shop':False,'gym': True ,'garden':True}]
+
+amenties =['shop','gym','garden']
+
+
+def optimalSolution(array,amenties):
+    dp =[[None for _ in range(len(array[0]))] for _ in range(len(array))] 
+    
+    mini =float('inf')
+    index =0
+    
+    for i in range(len(array)):
+        for k,j in enumerate(amenties):
+            if array[i][j]==True:
+                dp[i][k]=0
+            else:
+                pt1=1
+                pt2=1
+                
+                while i+pt1<=len(array)-1: 
+                  if array[i+pt1][j]!=True and i+pt1!=len(array)-1:   
+                    pt1+=1
+                  else:
+                      break
+               
+                
+                
+                
+                while i-pt2>0:
+                   
+                    if array[i-pt2][j]!=True and i-pt2!=0:
+                         pt2+=1
+                         
+                    else:
+                        break
+                if array[i-pt2][j]==True:
+                    pass
+                else:
+                    pt2=1
+                
+                
+                
+                if pt1<pt2:
+                    dp[i][k]=pt2
+                else:
+                    dp[i][k]=pt1
+                    
+                  
+    for i,val in enumerate(dp):
+            minimum = max(val)
+            
+            if mini>minimum:
+                mini =minimum
+                index =i
+                
+    return index   
+
+
+
+
+print(optimalSolution(array,amenties))         
